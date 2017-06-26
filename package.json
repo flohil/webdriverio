@@ -1,20 +1,19 @@
 {
-  "name": "webdriverio",
-  "description": "A Node.js bindings implementation for the W3C WebDriver protocol",
-  "version": "4.8.0",
-  "homepage": "http://webdriver.io",
-  "author": "Camilo Tapia <camilo.tapia@gmail.com>",
+  "name": "webdriverio-workflo",
+  "description": "Customized fork of webdriverio for use with workflo framework",
+  "version": "0.0.1",
+  "author": "Florian Hilbinger <florian.hilbinger@hotmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/webdriverio/webdriverio.git"
+    "url": "https://github.com/flohil/webdriverio-workflo"
   },
   "bugs": {
-    "url": "https://github.com/webdriverio/webdriverio/issues"
+    "url": "https://github.com/flohil/webdriverio-workflo/issues"
   },
   "license": "MIT",
   "main": "./build/index.js",
   "bin": {
-    "wdio": "bin/wdio"
+    "wdio": "bin/wdio-workflo"
   },
   "engines": {
     "node": ">= 0.12.0"
