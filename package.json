@@ -1,7 +1,7 @@
 {
   "name": "webdriverio-workflo",
   "description": "This is a customized version of webdriverio for use with workflo framework.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Florian Hilbinger <florian.hilbinger@hotmail.com>",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "clean:ios": "rm -fr test/site/platforms/ios",
     "clean:android": "rm -fr test/site/platforms/android",
     "compile": "run-p compile:*",
-    "compile:index": "mkdir -p build && babel index.js --out-file build/index.js",
+    "compile:index": "mkdir build && babel index.js --out-file build/index.js",
     "compile:lib": "babel lib/ -d build/lib",
     "cordova": "npm-run-all cordova:add_platforms --parallel cordova:compile:*",
     "cordova:add_platforms": "cd ./test/site && cordova platform add ios android && cd ../../",
@@ -53,7 +53,7 @@
     "test:snyk": "snyk auth $SNYK_AUTH_TOKEN && snyk test",
     "test:unit": "mocha test/setup-unit.js test/spec/unit/*.js",
     "test:wdio": "mocha test/setup-unit.js test/spec/wdio/*.js",
-    "prepublish": "npm prune",
+    "prepublish": "npm prune && npm run build",
     "watch": "npm run compile:lib -- --watch"
   },
   "dependencies": {
