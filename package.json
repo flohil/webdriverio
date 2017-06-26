@@ -1,7 +1,7 @@
 {
   "name": "webdriverio-workflo",
   "description": "Customized fork of webdriverio for use with workflo framework",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Florian Hilbinger <florian.hilbinger@hotmail.com>",
   "repository": {
     "type": "git",
