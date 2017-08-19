@@ -76,6 +76,8 @@
     "safe-buffer": "~5.0.1",
     "selenium-standalone": "^6.6.0",
     "supports-color": "~3.2.3",
+    "ts-node": "^3.3.0",
+    "tsconfig-paths": "^2.2.0",
     "url": "~0.11.0",
     "validator": "~7.0.0",
     "wdio-dot-reporter": "~0.0.8",
