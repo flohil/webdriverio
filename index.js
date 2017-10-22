@@ -21,6 +21,7 @@ import ErrorHandler from './lib/utils/ErrorHandler'
 import getImplementedCommands from './lib/helpers/getImplementedCommands'
 import Launcher from './lib/launcher'
 import pkg from './package.json'
+import * as baseReporter from './lib/utils/BaseReporter'
 
 const IMPLEMENTED_COMMANDS = getImplementedCommands()
 const VERSION = pkg.version
@@ -56,4 +57,4 @@ let multiremote = function (options) {
     return remote(options, multibrowser.getModifier())
 }
 
-export { remote, multiremote, VERSION, ErrorHandler, Launcher }
+export { remote, multiremote, VERSION, ErrorHandler, Launcher, baseReporter }
