@@ -91,6 +91,18 @@ Path to WebDriver server.
 Type: `String`<br>
 Default: */wd/hub*
 
+### agent
+http(s).Agent instance to use
+
+Type: `Object`<br>
+Default: `new http(s).Agent({ keepAlive: true })`
+
+### proxy
+An HTTP proxy to be used. Supports proxy Auth with Basic Auth, identical to support for the url parameter (by embedding the auth info in the uri)
+
+Type: `String`<br>
+Default: `undefined` (no proxy used)
+
 ### baseUrl
 Shorten `url` command calls by setting a base url. If your `url` parameter starts with `/`, the base url gets prepended, not including the path portion of your baseUrl. If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url gets prepended directly.
 
@@ -122,7 +134,7 @@ Type: `Boolean`<br>
 Default: *true*
 
 ### bail
-If you only want to run your tests until a specific amount of tests have failed use bail (default is 0 - don't bail, run all tests).
+If you only want to run your tests until a specific amount of tests have failed use bail (default is 0 - don't bail, run all tests). _Note_: Please be aware that when using a third party test runner such as Mocha, additional configuration might be required.
 
 Type: `Number`<br>
 Default: *0* (don't bail, run all tests)
@@ -181,6 +193,21 @@ queryParams: {
 
 // Selenium request would look like:
 // http://127.0.0.1:4444/v1/session/a4ef025c69524902b77af5339017fd44/window/current/size?specialKey=d2ViZHJpdmVyaW8%3D
+```
+
+### headers
+A key-value store of headers to be added to every selenium request. Values must be strings.
+Type: `Object`<br>
+Default: None
+
+**Example**
+
+```js
+headers: {
+  Authorization: 'Basic dGVzdEtleTp0ZXN0VmFsdWU='
+}
+// This adds headers based on the key
+// This would result in a header named 'Authorization' with a value of 'Basic dGVzdEtleTp0ZXN0VmFsdWU='
 ```
 
 ## debug
@@ -278,3 +305,23 @@ Similarly for mocha:
         requires: ['./test/helpers/common.js']
     },
 ```
+
+## Run WebdriverIO Behind Corporate Proxy
+
+If your company has a corporate proxy (e.g. on `http://my.corp.proxy.com:9090`) for all outgoing requests you can set it using the `proxy` configuration option. Just set in your `wdio.conf.js` the following:
+
+```js
+exports.config = {
+    // ...
+    proxy: 'http://my.corp.proxy.com:9090',
+    // ...
+}
+```
+
+If you use [Sauce Connect Proxy](https://wiki.saucelabs.com/display/DOCS/Sauce+Connect+Proxy) start it via:
+
+```sh
+$ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
+```
+
+and set the config as described above.

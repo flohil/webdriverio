@@ -78,7 +78,7 @@ exports.config = {
     // },
     //
     // Test runner services
-    // Services take over a specfic job you don't want to take care of. They enhance
+    // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no self effort. Unlike plugins they don't add new
     // commands but hook themself up into the test process.
     // services: [],//
@@ -129,7 +129,7 @@ exports.config = {
     // beforeHook: function () {
     // },
     //
-    // Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
+    // Hook that gets executed _after_ a hook within the suite ends (e.g. runs after calling
     // afterEach in Mocha)
     // afterHook: function () {
     // },
@@ -146,7 +146,7 @@ exports.config = {
     // afterCommand: function (commandName, args, result, error) {
     // },
     //
-    // Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
+    // Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) ends.
     // afterTest: function (test) {
     // },
     //

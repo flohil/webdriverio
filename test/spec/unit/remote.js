@@ -1,3 +1,5 @@
+import http from 'http'
+import https from 'https'
 import { remote } from '../../../index.js'
 import RequestHandler from '../../../lib/utils/RequestHandler'
 import q from 'q'
@@ -39,9 +41,35 @@ describe('remote method', () => {
         client.desiredCapabilities.browserName.should.be.equal('')
     })
 
+    it('should create http.Agent with keep-alive enabled', () => {
+        var options = remote().requestHandler.createOptions({ path: startPath }, {})
+        options.agent.should.be.an.instanceof(http.Agent)
+        options.agent.keepAlive.should.be.equal(true)
+    })
+
+    it('should create https.Agent with keep-alive enabled if protocol is https', () => {
+        var options = remote({ protocol: 'https' }).requestHandler.createOptions({ path: startPath }, {})
+        options.agent.should.be.an.instanceof(https.Agent)
+        options.agent.keepAlive.should.be.equal(true)
+    })
+
+    it('should fail when trying to create request handler options with a bad protocol', () => {
+        expect(() => remote({ protocol: 'foo' }).requestHandler.createOptions({ path: startPath }, {})).to.throw()
+    })
+
     it('should append query parameters to remote calls', () => {
         var client = remote({queryParams: {testKey: 'testValue'}})
         client.requestHandler.createOptions({ path: startPath }, {}).qs.should.include({testKey: 'testValue'})
+    })
+
+    it('should add authorization header if specified', () => {
+        var client = remote({headers: {Authorization: 'testValue'}})
+        client.requestHandler.createOptions({ path: startPath }, {}).headers.should.include({'Authorization': 'testValue'})
+    })
+
+    it('should not add authorization header if not a string', () => {
+        var client = remote({headers: {Authorization: ['testValue']}})
+        Object.keys(client.requestHandler.createOptions({ path: startPath }, {}).headers).should.not.include('Authorization')
     })
 
     describe('on reject', () => {
@@ -168,7 +196,7 @@ describe('remote method', () => {
                 var requestOpts
 
                 RequestHandler.prototype.create.restore()
-                sandbox.stub(RequestHandler.prototype, 'create', function () {
+                sandbox.stub(RequestHandler.prototype, 'create').callsFake(function () {
                     requestOpts = this.defaultOptions
                 })
 
