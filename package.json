@@ -55,7 +55,6 @@
     "test:unit": "mocha test/setup-unit.js test/spec/unit/*.js",
     "test:wdio": "mocha test/setup-unit.js test/spec/wdio/*.js",
     "postversion": "run-s build",
-    "prepublish": "npm prune && npm run build",
     "prepare": "npm prune",
     "watch": "npm run compile:lib -- --watch"
   },
