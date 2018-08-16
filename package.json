@@ -1,7 +1,7 @@
 {
   "name": "webdriverio-workflo",
   "description": "This is a customized version of webdriverio for use with workflo framework.",
-  "version": "0.0.69",
+  "version": "0.0.70",
   "author": "Florian Hilbinger <florian.hilbinger@hotmail.com>",
   "repository": {
     "type": "git",
